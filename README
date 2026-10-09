@@ -1,0 +1,95 @@
+# Biblioteca Escolar
+
+Sistema de gestión de préstamos y devoluciones de una biblioteca escolar, desarrollado en Java como parte del Trabajo Sumativo de la asignatura **Desarrollo Orientado a Objetos II de Duoc UC**.
+
+## Descripción del proyecto
+
+La aplicación permite administrar libros, estudiantes, usuarios, categorías y préstamos. Incluye inicio de sesión con roles diferenciados, control del stock, registro de devoluciones y consultas del historial de préstamos.
+
+## Tecnologías utilizadas
+
+- Java 25
+- Java Swing
+- MySQL
+- JDBC
+- Maven
+- IntelliJ IDEA
+- FlatLaf
+
+## Funcionalidades principales
+
+### Usuarios y acceso
+- Inicio de sesión mediante correo electrónico y contraseña.
+- Acceso diferenciado para bibliotecarios y estudiantes.
+- Gestión de usuarios.
+
+### Administración de la biblioteca
+- Registro, consulta, modificación y eliminación de libros.
+- Gestión de estudiantes.
+- Gestión de categorías.
+- Control del stock disponible.
+
+### Préstamos y devoluciones
+- Registro de préstamos.
+- Validación de disponibilidad de libros.
+- Prevención de préstamos duplicados del mismo libro mientras exista uno activo.
+- Cálculo automático de la fecha de vencimiento.
+- Detección de préstamos atrasados.
+- Registro de devoluciones y actualización del stock.
+
+### Consultas y reportes
+- Historial de préstamos por estudiante.
+- Identificación de devoluciones a tiempo y con atraso.
+- Listado de los libros más prestados.
+- Listado de los libros actualmente en préstamo.
+
+## Estructura del proyecto
+
+El código fuente se organiza en los siguientes paquetes:
+
+- **conexion:** conexión con la base de datos.
+- **controlador:** lógica de gestión y ejecución de procesos.
+- **dao:** operaciones de acceso a datos.
+- **modelo:** entidades y comportamiento del dominio.
+- **vista:** interfaces gráficas del sistema.
+
+## Arquitectura y programación orientada a objetos
+
+El proyecto incorpora:
+
+- **MVC:** separación entre modelo, vista y controlador.
+- **DAO:** centralización del acceso a la base de datos.
+- **Singleton:** reutilización de la conexión a MySQL.
+- **Herencia y abstracción:** uso de una clase abstracta para representar elementos de la biblioteca.
+- **Polimorfismo:** utilización de una interfaz para las operaciones de préstamo y devolución.
+- **Concurrencia:** ejecución de préstamos y devoluciones mediante hilos.
+- **Sincronización:** protección de las operaciones que modifican el stock.
+
+## Requisitos
+
+- Java 25 o una versión compatible con el proyecto.
+- Maven.
+- MySQL Server.
+- IntelliJ IDEA u otro IDE compatible con Maven.
+
+## Configuración e instalación
+
+1. Clonar el repositorio.
+2. Crear la base de datos `biblioteca` en MySQL.
+3. Ejecutar el script SQL de creación y poblamiento de tablas, si está incluido en el repositorio.
+4. Configurar la contraseña de MySQL mediante la variable de entorno `BIBLIOTECA_DB_PASSWORD`.
+5. Abrir el proyecto desde el archivo `pom.xml`.
+6. Permitir que Maven descargue las dependencias.
+7. Ejecutar la clase `cl.biblioteca.vista.LoginFrame`.
+
+La conexión está configurada inicialmente para una instancia local de MySQL:
+
+`jdbc:mysql://localhost:3306/biblioteca`
+
+La contraseña se obtiene desde una variable de entorno y no debe almacenarse directamente en el código fuente.
+
+## Autora
+
+**Consuelo Martinez**
+
+Proyecto académico — Desarrollo Orientado a Objetos II, Duoc UC, 2026.
