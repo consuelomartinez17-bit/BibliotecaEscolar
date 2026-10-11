@@ -54,7 +54,7 @@ public class PrestamosFrame extends JFrame {
         usuarioActual = null;
         modo = "BIBLIOTECARIO";
 
-        gestionPrestamos = new GestionPrestamos();
+        gestionPrestamos = GestionPrestamos.getInstance();
         estudianteDAO = new EstudianteDAO();
         libroDAO = new LibroDAO();
         prestamoDAO = new PrestamoDAO();
@@ -74,7 +74,7 @@ public class PrestamosFrame extends JFrame {
         this.usuarioActual = usuario;
         this.modo = modo;
 
-        gestionPrestamos = new GestionPrestamos();
+        gestionPrestamos = GestionPrestamos.getInstance();
         estudianteDAO = new EstudianteDAO();
         libroDAO = new LibroDAO();
         prestamoDAO = new PrestamoDAO();

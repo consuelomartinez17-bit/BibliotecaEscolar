@@ -15,19 +15,38 @@ import cl.biblioteca.modelo.Prestable;
  * Clase encargada de gestionar las operaciones relacionadas
  * con los préstamos de la biblioteca.
  *
+ * Mantiene una única instancia compartida por todas las ventanas,
+ * de modo que los métodos synchronized usen siempre el mismo candado
+ * y el stock se modifique de forma segura.
+ *
  * @author Consuelo Martinez
  */
 public class GestionPrestamos {
+
+    /**
+     * Única instancia compartida de la clase.
+     */
+    private static final GestionPrestamos INSTANCIA =
+            new GestionPrestamos();
 
     private final LibroDAO libroDAO;
     private final PrestamoDAO prestamoDAO;
 
     /**
-     * Constructor de la clase.
+     * Constructor privado para evitar crear más de una instancia.
      */
-    public GestionPrestamos() {
+    private GestionPrestamos() {
         this.libroDAO = new LibroDAO();
         this.prestamoDAO = new PrestamoDAO();
+    }
+
+    /**
+     * Obtiene la instancia compartida del controlador de préstamos.
+     *
+     * @return instancia única de GestionPrestamos
+     */
+    public static GestionPrestamos getInstance() {
+        return INSTANCIA;
     }
 
     /**
@@ -59,12 +78,12 @@ public class GestionPrestamos {
              * Verifica si el estudiante ya tiene este mismo libro
              * en un préstamo activo.
              */
-            for (Prestamo prestamoActivo
+            for (Prestamo prestamoDelEstudiante
                     : prestamoDAO.listarPrestamosPorEstudiante(
                     prestamo.getEstudiante().getIdEstudiante())) {
 
-                if (!prestamoActivo.isDevuelto()
-                        && prestamoActivo.getLibro().getIdLibro()
+                if (!prestamoDelEstudiante.isDevuelto()
+                        && prestamoDelEstudiante.getLibro().getIdLibro()
                         == libro.getIdLibro()) {
 
                     System.out.println(

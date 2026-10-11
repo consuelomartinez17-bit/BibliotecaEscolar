@@ -34,7 +34,7 @@ public class DatabaseConnection {
      * @return conexión a la base de datos
      * @throws SQLException si ocurre un error al conectar
      */
-    public static Connection getInstance() throws SQLException {
+    public static synchronized Connection getInstance() throws SQLException {
 
         if (connection == null || connection.isClosed()) {
             connection = DriverManager.getConnection(
